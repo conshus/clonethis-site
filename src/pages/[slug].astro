@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+import { marked } from 'marked';
+const { slug } = Astro.params;
+console.log("slug: ", slug);
+const starter = await getEntry('starter', slug);
+console.log("starter: ", starter);
+if(!starter){
+  return Astro.redirect('./');
+}
+const { Content, headings } = await starter.render();
+console.log("headings: ", headings);
+let instructions;
+if(starter.data.instructions){
+  console.log("got instructions: ", starter.data.instructions);
+  const response = await fetch(starter.data.instructions);
+  const markdown = await response.text();
+  instructions = marked.parse(markdown);
+}
+---
+<Layout title="Welcome to Astro.">
+    <h1>{starter.data.name}</h1>
+    <h2>{slug}</h2>
+    
+    # This is a test
+    
+    <Content />
+    
+    {starter.data.instructions && <div set:html={instructions}>}
+    
+</Layout>
+

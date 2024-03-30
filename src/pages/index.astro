@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import Dwane from '../components/Dwane.astro';
+// import Dwane from '../components/Dwane.astro';
+// import { getCollection, getEntry } from 'astro:content';
+
+// const allStarters = await getCollection('starter');
+// console.log("allStarters: ", allStarters);
 ---
 
 <Layout title="Welcome to Astro.">
@@ -34,7 +38,17 @@ import Dwane from '../components/Dwane.astro';
 				</linearGradient>
 			</defs>
 		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span> x Cloudflare</h1>
+
+		<!-- <label for="starter-select">Clone this:</label>
+
+		<select name="pages" id="starter-select">
+			<option value="">--Please choose an option--</option>
+			{allStarters.map(starterEntry => (
+				<option value=`/${starterEntry.slug}`>{starterEntry.data.name}</option>
+			))}
+		</select> -->
+
+		<h1><span class="text-gradient">Astro</span> x Cloudflare</h1>
 		<p class="instructions">
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
@@ -61,9 +75,27 @@ import Dwane from '../components/Dwane.astro';
 				body="Come say hi to our amazing Discord community. ❤️"
 			/>
 		</ul>
-		<Dwane mode="main" />
 	</main>
 </Layout>
+
+
+<!-- <script is:inline>
+	document.addEventListener('astro:page-load', () => {
+    // This only runs once.
+    // setupStuff();
+		console.log("astro:page-load");
+			const selectEl = document.querySelector("#starter-select");
+			console.log("selectEl: ", selectEl);
+			selectEl.addEventListener("change", (e)=> {
+				console.log("selectEl.value: ", selectEl.value);
+				// location.href= selectEl.value;
+				window.astroNavigate(selectEl.value);
+			});
+
+	}, { once: true });
+
+
+</script> -->
 
 <style>
 	main {

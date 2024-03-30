@@ -1,11 +1,21 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import { getCollection, getEntry } from 'astro:content';
+import Dwane from '../components/Dwane.astro';
 
 interface Props {
 	title: string;
 }
 
+const { slug } = Astro.params;
+console.log("slug layout: ", slug);
+
 const { title } = Astro.props;
+
+
+const allStarters = await getCollection('starter');
+console.log("allStarters: ", allStarters);
+
 ---
 
 <!doctype html>
@@ -20,7 +30,18 @@ const { title } = Astro.props;
 		<ViewTransitions />
 	</head>
 	<body>
+		{slug && <a href="./">home</a>}
+		<label for="starter-select">Clone this:</label>
+
+		<select name="pages" id="starter-select">
+			<option value="">--Please choose an option--</option>
+			{allStarters.map(starterEntry => (
+				<option value=`/${starterEntry.slug}`>{starterEntry.data.name}</option>
+			))}
+		</select>
+
 		<slot />
+		<Dwane mode=`${slug ? slug : "main"}` />
 	</body>
 </html>
 
@@ -28,6 +49,26 @@ const { title } = Astro.props;
 	import { navigate } from 'astro:transitions/client';
 	window.astroNavigate = navigate;
 </script>
+
+<script is:inline data-astro-rerun>
+	document.addEventListener('astro:page-load', () => {
+    // This only runs once.
+    // setupStuff();
+		console.log("astro:page-load");
+			const selectEl = document.querySelector("#starter-select");
+			console.log("selectEl: ", selectEl);
+			selectEl.addEventListener("change", (e)=> {
+				console.log("selectEl.value: ", selectEl.value);
+				// location.href= selectEl.value;
+				window.astroNavigate(selectEl.value);
+			});
+
+	}, { once: true });
+
+
+</script>
+
+
 
 <style is:global>
 	:root {
