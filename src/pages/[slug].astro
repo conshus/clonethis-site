@@ -19,7 +19,7 @@ if(starter.data.instructions){
   instructions = marked.parse(markdown);
 }
 ---
-<Layout title="Welcome to Astro.">
+<Layout title={starter.data.name}>
     <h1>{starter.data.name}</h1>
     <h2>{slug}</h2>
     
