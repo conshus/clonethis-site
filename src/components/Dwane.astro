@@ -1416,7 +1416,8 @@ console.log("mode: ", mode);
 .dwane {
     width: var(--dwaneio-width);
     /* width: 100px; */
-        position: fixed;
+        /* position: fixed; */
+        position: absolute;
         /* bottom: -55px; */
         bottom: 0;
         right: 0;
@@ -1433,8 +1434,10 @@ console.log("mode: ", mode);
 
 .dwaneio__camera {
     position: absolute;
-    width: calc(var(--dwaneio-width) - 90px);
-    height: auto;
+    /* width: calc(var(--dwaneio-width) - 90px);
+    height: auto; */
+    width: 0;
+    height: 0;
     top: 170px;
     right: 40px;
     opacity: 0;
@@ -1445,6 +1448,8 @@ console.log("mode: ", mode);
 .dwaneio__camera.active {
     opacity: 1;
     transform: translateY(20px);
+    width: calc(var(--dwaneio-width) - 90px);
+    height: auto;
 }
 
 .dwaneio__speech-bubble {
@@ -1464,9 +1469,11 @@ console.log("mode: ", mode);
 }
 
 .dwaneio__headphones {
-    width: calc(var(--dwaneio-width) + 63px);
     position: absolute;
-    height: auto;
+    /* width: calc(var(--dwaneio-width) + 63px);
+    height: auto; */
+    width: 0;
+    height: 0;
     top: -170px;
     right: -28px;
     opacity: 0;
@@ -1477,6 +1484,8 @@ console.log("mode: ", mode);
 .dwaneio__headphones.active {
     opacity: 1;
     transform: translateY(20px);
+    width: calc(var(--dwaneio-width) + 63px);
+    height: auto;
 }
 
 .dwaneio__mic {
@@ -1528,9 +1537,11 @@ console.log("mode: ", mode);
 }
 
 .dwaneio__laptop {
-    width: calc(var(--dwaneio-width) + 63px);
     position: absolute;
-    height: auto;
+    /* width: calc(var(--dwaneio-width) + 63px);
+    height: auto; */
+    width: 0;
+    height: 0;
     bottom: 0;
     right: -7px;
     opacity: 0;
@@ -1539,6 +1550,8 @@ console.log("mode: ", mode);
 }
 
 .dwaneio__laptop.active {
+    width: calc(var(--dwaneio-width) + 63px);
+    height: auto;
     opacity: 1;
     transform: translateX(20px);
 }
@@ -1591,5 +1604,16 @@ console.log("mode: ", mode);
     transform: translateY(20px);
 }
 
+@media (max-width: 1550px) {
+  .dwane {
+    position: fixed;
+  }
+}
+
+@media (max-width: 680px) {
+  .dwane {
+    display: none;
+  }
+}
 
 </style>

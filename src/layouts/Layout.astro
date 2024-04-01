@@ -10,7 +10,7 @@ interface Props {
 let slug = Astro.params.slug;
 console.log("slug layout: ", slug);
 
-console.log("Astro.url: ", Astro.url.pathname);
+console.log("Astro.url: ", Astro.url);
 if (Astro.url.pathname.includes('shop')){
 	slug = "shop";
 }
@@ -36,18 +36,28 @@ const allStarters = await getCollection('starter');
 		<ViewTransitions />
 	</head>
 	<body>
-		{slug && <a href="./">home</a>}
-		<label for="starter-select">Clone this:</label>
-
-		<select name="pages" id="starter-select">
-			<option value="">--Please choose an option--</option>
-			{allStarters.map(starterEntry => (
-				<option value=`/${starterEntry.slug}` selected={starterEntry.slug === slug} >{starterEntry.data.name}</option>
-			))}
-		</select>
-		{slug !== "shop" && <a href="./shop">shop</a>}
-		<slot />
-		<Dwane mode=`${slug ? slug : "main"}` />
+		<section>
+			<header>
+				{slug && <a href="./">home</a>}
+				<label for="starter-select">Clone this:</label>
+		
+				<select name="pages" id="starter-select">
+					<option value="">--Please choose an option--</option>
+					{allStarters.map(starterEntry => (
+						<option value=`/${starterEntry.slug}` selected={starterEntry.slug === slug} >{starterEntry.data.name}</option>
+					))}
+				</select>
+				{slug !== "shop" && <a href="./shop">shop</a>}	
+			</header>
+			<aside id="empty-space"></aside>
+			<main>
+				<slot />
+			</main>
+			<aside id="dwane-container">
+				<Dwane mode=`${slug ? slug : "main"}` />
+			</aside>
+	
+		</section>
 	</body>
 </html>
 
@@ -87,12 +97,19 @@ const allStarters = await getCollection('starter');
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
+		--header-height: 100px;
 	}
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;
 		background-size: 224px;
 		color: white;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
 	}
 
 	a {
@@ -108,5 +125,53 @@ const allStarters = await getCollection('starter');
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+	}
+	section {
+		display: grid;
+		width: 100%;
+		height: 100dvh;
+		max-width: 1500px;
+		grid-template-areas:
+			"header header header"
+			"empty main dwane";
+		grid-template-columns: 200px 1fr 200px;
+		grid-template-rows: 100px 1fr;
+		margin: auto;
+	}
+
+	@media (max-width: 968px) {
+		section {
+			grid-template-areas:
+				"header header"
+				"main dwane";
+
+		}
+	}
+
+	@media (max-width: 680px) {
+		section {
+			grid-template-areas:
+				"header"
+				"main";
+
+		}
+	}
+
+
+	header {
+		grid-area: header;
+	}
+
+	#empty-space {
+		grid-area: empty;
+	}
+
+	#dwane-container {
+		grid-area: dwane;
+		position: relative;
+	}
+
+	main {
+		grid-area: main;
 	}
 </style>
