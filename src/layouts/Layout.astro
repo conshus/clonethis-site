@@ -38,16 +38,21 @@ const allStarters = await getCollection('starter');
 	<body>
 		<section>
 			<header>
-				{slug && <a href="./">home</a>}
-				<label for="starter-select">Clone this:</label>
-		
-				<select name="pages" id="starter-select">
-					<option value="">--Please choose an option--</option>
-					{allStarters.map(starterEntry => (
-						<option value=`/${starterEntry.slug}` selected={starterEntry.slug === slug} >{starterEntry.data.name}</option>
-					))}
-				</select>
-				{slug !== "shop" && <a href="./shop">shop</a>}	
+				<div style="text-align: right">
+					{slug && <a href="./">home</a>} {slug && slug !== "shop" && "|"} {slug !== "shop" && <a href="./shop">shop</a>}
+				</div>
+				<div style="text-align: center">
+					<label for="starter-select" style="font-size: 6rem">Clone this:</label>
+					<br/>
+					<select name="pages" id="starter-select">
+						<option value="">select a starter</option>
+						{allStarters.map(starterEntry => (
+							<option value=`/${starterEntry.slug}` selected={starterEntry.slug === slug} >{starterEntry.data.name}</option>
+						))}
+					</select>
+	
+				</div>
+					
 			</header>
 			<aside id="empty-space"></aside>
 			<main>
@@ -67,6 +72,8 @@ const allStarters = await getCollection('starter');
 </script>
 
 <script is:inline data-astro-rerun>
+	console.log("location.hash: ",window.location.hash);
+
 	document.addEventListener('astro:page-load', () => {
     // This only runs once.
     // setupStuff();
@@ -115,6 +122,12 @@ const allStarters = await getCollection('starter');
 	a {
 		color: white;
 	}
+
+	select {
+		font-size: 1.9rem;
+		padding: 2px 5px;
+		text-align: center;
+	}
 	code {
 		font-family:
 			Menlo,
@@ -135,7 +148,7 @@ const allStarters = await getCollection('starter');
 			"header header header"
 			"empty main dwane";
 		grid-template-columns: 200px 1fr 200px;
-		grid-template-rows: 100px 1fr;
+		grid-template-rows: 200px 1fr;
 		margin: auto;
 	}
 
