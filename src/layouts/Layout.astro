@@ -109,9 +109,9 @@ const allStarters = await getCollection('starter');
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		/* background: #13151a;
 		background-size: 224px;
-		color: white;
+		color: white; */
 	}
 
 	body {
@@ -199,7 +199,7 @@ const allStarters = await getCollection('starter');
 	}
 
 	@media (prefers-color-scheme: light) {
-		body {
+		html {
 			color: black;
 			background-color: white;
 		}
@@ -209,7 +209,7 @@ const allStarters = await getCollection('starter');
 	}
 
 	@media (prefers-color-scheme: dark) {
-		body {
+		html {
 			color: white;
 			background-color:#201f1f;
 		}
