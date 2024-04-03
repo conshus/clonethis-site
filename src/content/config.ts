@@ -5,6 +5,7 @@ const starter = defineCollection({
   schema: z.object({
     isComingSoon: z.boolean(),
     name: z.string(),
+    summary: z.string(),
     status: z.string().optional(),
     repo: z.string().url().optional(),
     instructions: z.string().url().optional(),

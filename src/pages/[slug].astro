@@ -20,14 +20,68 @@ if(starter.data.instructions){
 }
 ---
 <Layout title={starter.data.name}>
-    <h1>{starter.data.name}</h1>
-    <h2>{slug}</h2>
+    <!-- <h1>{starter.data.name}</h1>
+    <h2>{slug}</h2> -->
     
-    # This is a test
+
+    <fieldset>
+      <legend>Summary</legend>
+      {starter.data.summary}
+    </fieldset>
+
+    {starter.data.isComingSoon && <h2>Soon Come.</h2>}
     
-    <Content />
+    <!-- <Content />
+    <b>test</b> -->
+
+    <fieldset>
+      <legend>Status</legend>
+      {starter.data.status}
+    </fieldset>
+
+
+    <button>Get updates.</button>
     
-    {starter.data.instructions && <div set:html={instructions}>}
+    <a href="#instructions" id="instructions-link">show instructions</a>
+
+  <dialog id="instructions-dialog">
+    {starter.data.instructions && <div set:html={instructions}></div>}
+    <form method="dialog">
+      <button>OK</button>
+    </form>
+  </dialog>
     
 </Layout>
 
+<script is:inline  data-astro-rerun>
+  
+  document.addEventListener('astro:page-load', () => {
+    // This only runs once.
+    // setupStuff();
+    console.log("check for hashtag");
+    console.log("location.hash: ",window.location.hash);
+
+    const instructionsLinkEl = document.querySelector("#instructions-link");
+    const instructionsDialog = document.querySelector("#instructions-dialog");
+
+    if(window.location.hash.includes("instructions")){
+      instructionsDialog.showModal();
+    }
+
+    instructionsLinkEl.addEventListener("click", () => instructionsDialog.showModal());
+
+	}, { once: true });
+
+</script>
+
+<style>
+  fieldset {
+    max-width: 475px;
+    width: 100%;
+    margin: auto;
+  }
+  body {
+    text-align: center;
+  }
+
+</style>

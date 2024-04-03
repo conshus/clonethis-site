@@ -42,7 +42,7 @@ const allStarters = await getCollection('starter');
 					{slug && <a href="./">home</a>} {slug && slug !== "shop" && "|"} {slug !== "shop" && <a href="./shop">shop</a>}
 				</div>
 				<div style="text-align: center">
-					<label for="starter-select" style="font-size: 6rem">Clone this:</label>
+					<label for="starter-select" style="font-size: 6rem; font-weight: 900;">Clone this:</label>
 					<br/>
 					<select name="pages" id="starter-select">
 						<option value="">select a starter</option>
@@ -72,7 +72,7 @@ const allStarters = await getCollection('starter');
 </script>
 
 <script is:inline data-astro-rerun>
-	console.log("location.hash: ",window.location.hash);
+	
 
 	document.addEventListener('astro:page-load', () => {
     // This only runs once.
@@ -105,6 +105,7 @@ const allStarters = await getCollection('starter');
 			white 60%
 		);
 		--header-height: 100px;
+		color-scheme: light dark;
 	}
 	html {
 		font-family: system-ui, sans-serif;
@@ -119,9 +120,18 @@ const allStarters = await getCollection('starter');
 		box-sizing: border-box;
 	}
 
-	a {
-		color: white;
+	h2 {
+		font-size: 3.5rem;
+		margin: 5px;
 	}
+
+	button {
+		cursor: pointer;
+
+	}
+	/* a {
+		color: white;
+	} */
 
 	select {
 		font-size: 1.9rem;
@@ -147,7 +157,7 @@ const allStarters = await getCollection('starter');
 		grid-template-areas:
 			"header header header"
 			"empty main dwane";
-		grid-template-columns: 200px 1fr 200px;
+		grid-template-columns: 300px 1fr 300px;
 		grid-template-rows: 200px 1fr;
 		margin: auto;
 	}
@@ -186,5 +196,25 @@ const allStarters = await getCollection('starter');
 
 	main {
 		grid-area: main;
+	}
+
+	@media (prefers-color-scheme: light) {
+		body {
+			color: black;
+			background-color: white;
+		}
+		a {
+			color: black;
+		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		body {
+			color: white;
+			background-color:#201f1f;
+		}
+		a {
+			color: white;
+		}
 	}
 </style>
