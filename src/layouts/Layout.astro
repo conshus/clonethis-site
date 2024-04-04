@@ -42,7 +42,7 @@ const allStarters = await getCollection('starter');
 					{slug && <a href="./">home</a>} {slug && slug !== "shop" && "|"} {slug !== "shop" && <a href="./shop">shop</a>}
 				</div>
 				<div style="text-align: center">
-					<label for="starter-select" style="font-size: 6rem; font-weight: 900;">Clone this:</label>
+					<label for="starter-select" id="starter-label">Clone this:</label>
 					<br/>
 					<select name="pages" id="starter-select">
 						<option value="">select a starter</option>
@@ -63,6 +63,13 @@ const allStarters = await getCollection('starter');
 			</aside>
 	
 		</section>
+		<dialog id="updates-dialog">
+			Updates!
+			<form method="dialog">
+				<button>OK</button>
+			</form>
+		</dialog>
+		
 	</body>
 </html>
 
@@ -120,10 +127,6 @@ const allStarters = await getCollection('starter');
 		box-sizing: border-box;
 	}
 
-	h2 {
-		font-size: 3.5rem;
-		margin: 5px;
-	}
 
 	button {
 		cursor: pointer;
@@ -138,6 +141,19 @@ const allStarters = await getCollection('starter');
 		padding: 2px 5px;
 		text-align: center;
 	}
+
+	h1, #starter-label {
+		font-size: clamp(3rem, calc(3rem + 5vw), 6rem);
+		/* font-size: 6rem; */
+		font-weight: 900;
+	}
+
+	h2 {
+		font-size: clamp(1.5rem, calc(1.5rem + 5vw), 3rem);
+		/* font-size: 3.5rem; */
+		margin: 5px;
+	}
+
 	code {
 		font-family:
 			Menlo,

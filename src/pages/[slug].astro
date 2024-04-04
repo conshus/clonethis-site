@@ -42,9 +42,11 @@ if(starter.data.instructions){
     </fieldset>
 
 
-    <button>Get updates.</button>
-    
-    <a href="#instructions" id="instructions-link">show instructions</a>
+    <!-- <div id="updates-container"> -->
+      <button id="updates-button">Get updates.</button>
+    <!-- </div> -->
+
+    {starter.data.instructions && <a href="#instructions" id="instructions-link">show instructions</a>}
 
   <dialog id="instructions-dialog">
     {starter.data.instructions && <div set:html={instructions}></div>}
@@ -63,14 +65,17 @@ if(starter.data.instructions){
     console.log("check for hashtag");
     console.log("location.hash: ",window.location.hash);
 
-    const instructionsLinkEl = document.querySelector("#instructions-link");
-    const instructionsDialog = document.querySelector("#instructions-dialog");
+    if (document.querySelector("#instructions-link")){
+      const instructionsLinkEl = document.querySelector("#instructions-link");
+      const instructionsDialog = document.querySelector("#instructions-dialog");
 
-    if(window.location.hash.includes("instructions")){
-      instructionsDialog.showModal();
+      if(window.location.hash.includes("instructions")){
+        instructionsDialog.showModal();
+      }
+
+      instructionsLinkEl.addEventListener("click", () => instructionsDialog.showModal());
+
     }
-
-    instructionsLinkEl.addEventListener("click", () => instructionsDialog.showModal());
 
 	}, { once: true });
 
@@ -79,11 +84,18 @@ if(starter.data.instructions){
 <style>
   fieldset {
     max-width: 475px;
-    width: 100%;
+    /* width: 100%; */
     margin: auto;
   }
   h2 {
     text-align: center;
+  }
+  #updates-button {
+    display: block;
+    margin: auto;
+    font-size: clamp(.5rem, calc(.5rem + 5vw), 1.5rem);
+    padding: 10px;
+    margin-top: 35px;
   }
 
 </style>
