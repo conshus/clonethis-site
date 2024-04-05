@@ -38,9 +38,9 @@ const allStarters = await getCollection('starter');
 	<body>
 		<section>
 			<header>
-				<div style="text-align: right">
+				<nav style="text-align: right">
 					{slug && <a href="./">home</a>} {slug && slug !== "shop" && "|"} {slug !== "shop" && <a href="./shop">shop</a>}
-				</div>
+				</nav>
 				<div style="text-align: center">
 					<label for="starter-select" id="starter-label">Clone this:</label>
 					<br/>
@@ -128,6 +128,9 @@ const allStarters = await getCollection('starter');
 	}
 
 
+	nav {
+		padding: 5px 5px 0 5px;
+	}
 	button {
 		cursor: pointer;
 
@@ -154,6 +157,10 @@ const allStarters = await getCollection('starter');
 		margin: 5px;
 	}
 
+	h3 {
+		font-size: clamp(0.6rem, calc(0.6rem + 5vw), 1.2rem);
+	}
+
 	code {
 		font-family:
 			Menlo,
@@ -176,6 +183,12 @@ const allStarters = await getCollection('starter');
 		grid-template-columns: 300px 1fr 300px;
 		grid-template-rows: 200px 1fr;
 		margin: auto;
+	}
+
+	dialog #close {
+		position: absolute;
+		top: 0;
+		right: 0;
 	}
 
 	@media (max-width: 968px) {
@@ -222,6 +235,12 @@ const allStarters = await getCollection('starter');
 		a {
 			color: black;
 		}
+		mark {
+			background-color: black;
+		}
+		mark a {
+			color: white;
+		}
 	}
 
 	@media (prefers-color-scheme: dark) {
@@ -232,5 +251,12 @@ const allStarters = await getCollection('starter');
 		a {
 			color: white;
 		}
+		mark {
+			background-color: white;
+		}
+		mark a {
+			color: black;
+		}
+
 	}
 </style>
