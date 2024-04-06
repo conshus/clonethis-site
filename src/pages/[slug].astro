@@ -49,10 +49,10 @@ if(starter.data.instructions){
     {starter.data.instructions && <a href="#instructions" id="instructions-link">show instructions</a>}
 
   <dialog id="instructions-dialog">
-    {starter.data.instructions && <div set:html={instructions}></div>}
     <form method="dialog">
-      <button id="close">OK</button>
+      <button id="close">X</button>
     </form>
+    {starter.data.instructions && <div set:html={instructions}></div>}
   </dialog>
     
 </Layout>

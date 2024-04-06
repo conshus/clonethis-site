@@ -185,10 +185,19 @@ const allStarters = await getCollection('starter');
 		margin: auto;
 	}
 
-	dialog #close {
-		position: fixed;
+	dialog {
+		padding-top: 0;
+		padding-right: 0;
+	}
+
+	dialog > form {
+		text-align: right;
+		position: sticky;
 		top: 0;
-		right: 0;
+	}
+
+	dialog > form > button {
+		font-weight: 900;
 	}
 
 	::backdrop {
