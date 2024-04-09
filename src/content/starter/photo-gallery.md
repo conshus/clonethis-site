@@ -3,8 +3,8 @@ isComingSoon: true
 name: 'Photo Gallery Starter'
 repo: 'https://github.com/conshus/posting-pictures'
 instructions: 'https://raw.githubusercontent.com/conshus/posting-pictures/main/README.md'
-summary: "Summary goes here."
-status: "Status goes here."
+summary: 'I created <a href="https://Dwane.in" target="_blank">Dwane.in</a> to record my travels. Some folks asked about getting something similiar. So this is that. A starter photo gallery.'
+status: '<li>April 2024: Updating the Astro version and refactoring to incorporate View Transitions.</li>'
 ---
 
 # Test 1

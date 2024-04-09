@@ -20,13 +20,12 @@ if(starter.data.instructions){
 }
 ---
 <Layout title={starter.data.name}>
-    <!-- <h1>{starter.data.name}</h1>
-    <h2>{slug}</h2> -->
-    
-
+  <!-- <h1>{starter.data.name}</h1>
+  <h2>{slug}</h2> -->
+  <div id="container">
     <fieldset>
-      <legend>Summary</legend>
-      {starter.data.summary}
+      <legend><mark>Summary</mark></legend>
+      <span set:html={starter.data.summary}></span>
     </fieldset>
 
     {starter.data.isComingSoon && <h2>Soon Come.</h2>}
@@ -37,8 +36,8 @@ if(starter.data.instructions){
     <b>test</b> -->
 
     <fieldset>
-      <legend>Status</legend>
-      {starter.data.status}
+      <legend><mark>Status</mark></legend>
+      <ul set:html={starter.data.status}></ul>
     </fieldset>
 
 
@@ -46,7 +45,10 @@ if(starter.data.instructions){
       <button id="updates-button">Get updates.</button>
     <!-- </div> -->
 
-    {starter.data.instructions && <a href="#instructions" id="instructions-link">show instructions</a>}
+    {starter.data.instructions && !starter.data.isComingSoon && <a href="#instructions" id="instructions-link">show instructions</a>}
+
+      
+  </div>
 
   <dialog id="instructions-dialog">
     <form method="dialog">
@@ -82,10 +84,17 @@ if(starter.data.instructions){
 </script>
 
 <style>
+
+  #container {
+    margin-top: 20px;
+  }
   fieldset {
     max-width: 475px;
     /* width: 100%; */
     margin: auto;
+  }
+  fieldset > legend > mark {
+    font-weight: 700;
   }
   h2 {
     text-align: center;
