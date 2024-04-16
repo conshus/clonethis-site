@@ -9,6 +9,7 @@ const starter = defineCollection({
     status: z.string().optional(),
     repo: z.string().url().optional(),
     instructions: z.string().url().optional(),
+    updates: z.string().url(),
   }),
 });
 
