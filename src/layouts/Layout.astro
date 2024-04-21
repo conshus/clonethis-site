@@ -28,10 +28,24 @@ const allStarters = await getCollection('starter');
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="author" content="Dwane Hemmings">
+		<meta name="description" content="Wanna be starting something!" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<!-- Twitter card and Facebook stuff -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@lifelongdev">
+		<meta name="twitter:creator" content="@lifelongdev">
+		<meta name="twitter:title" content="Clone This Site">
+		<meta name="twitter:description" content="Wanna be starting something!">
+		<meta name="twitter:image" content="https://clonethis.site/clonethis-site-social.png">
+
+		<meta property="og:image" content="https://clonethis.site/clonethis-site-social.png" />
+		<meta property="og:image:secure_url" content="https://clonethis.site/clonethis-site-social.png" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:alt" content="a cartoon character with a laptop and headphones on in the center with 2 square on either side, one says my site copy the other your site paste with clonethis.site across the top of the image." />
+		<meta property="og:description" content="Wanna be starting something!" />
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
